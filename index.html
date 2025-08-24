@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Онлайн-контроллинг X-FOOD: Тарифы и Услуги для Пиццерий</title>
+    <meta name="description" content="X-FOOD предлагает независимый онлайн-контроллинг для пиццерий. Помогаем находить точки роста и следить за соблюдением стандартов 24/7. Попробуйте бесплатно!">
+    <meta property="og:title" content="Онлайн-контроллинг X-FOOD: Тарифы и Услуги">
+    <meta property="og:description" content="Независимый взгляд на процессы в вашей пиццерии для роста и контроля стандартов.">
+    <meta property="og:image" content="https://i.postimg.cc/GHcGdWD4/image.png">
+    <meta property="og:url" content="https://your-website-url.com"> <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div id="main-content">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+            <header class="text-center py-16 md:py-24">
+                <h1 class="main-heading text-white">
+                    Онлайн-контроллинг <br class="hidden md:block"> для вашего бизнеса
+                </h1>
+                <p class="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-gray-400">
+                    <span class="accent-color font-semibold">X-FOOD</span> — это независимый взгляд на процессы в вашей пиццерии.<br class="hidden md:block"> Мы помогаем находить точки роста и следить за соблюдением стандартов 24/7.
+                </p>
+            </header>
+
+            <main>
+                <section id="tariffs" class="section-container">
+                     <h2 class="section-heading text-white text-center mb-16">Тарифы и предложения</h2>
+                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+                        
+                        <div class="card card-highlight p-8 flex flex-col">
+                            <h3 class="text-3xl font-bold text-white">Легкий старт</h3>
+                            <p class="text-gray-400 mt-2">Попробуйте наш сервис абсолютно бесплатно.</p>
+                            <div class="my-8 flex-grow">
+                                <ul class="feature-list">
+                                    <li><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>4 проверки по «Одной камере»</span></li>
+                                    <li><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Подходит для ~2 менеджеров</span></li>
+                                    <li><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>1 онлайн-встреча 30 минут</span></li>
+                                </ul>
+                            </div>
+                            <div class="text-6xl font-black text-white">0&nbsp;₽</div>
+                            <div class="mt-8">
+                                <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20бесплатный%20тариф%20«Легкий%20старт»" target="_blank" class="cta-button w-full">Попробовать бесплатно</a>
+                            </div>
+                        </div>
+
+                        <div class="card p-8 flex flex-col">
+                            <h3 class="text-3xl font-bold text-white">Основные тарифы</h3>
+                            <p class="text-gray-400 mt-2">Выберите подходящий тип проверки для регулярного контроля.</p>
+                            <div class="my-8 flex-grow space-y-6">
+                                <div id="full-check-trigger" class="border border-color rounded-xl p-6 cursor-pointer hover:border-gray-500 transition-colors flex flex-col" role="button" aria-label="Узнать подробнее о полной проверке">
+                                    <div class="flex-grow">
+                                        <h4 class="font-bold text-xl text-white">Полная проверка</h4>
+                                        <p class="text-gray-400 mt-1">Комплексный контроль по всем камерам пиццерии.</p>
+                                    </div>
+                                    <p class="mt-4 text-sm font-semibold accent-color self-start">Подробнее →</p>
+                                </div>
+                                <div id="single-cam-trigger" class="border border-color rounded-xl p-6 cursor-pointer hover:border-gray-500 transition-colors flex flex-col" role="button" aria-label="Узнать подробнее о проверке одной камеры">
+                                    <div class="flex-grow">
+                                        <h4 class="font-bold text-xl text-white">Одна камера</h4>
+                                        <p class="text-gray-400 mt-1">Сфокусированный контроль по камере горячего цеха с сайта dodopizza.ru</p>
+                                    </div>
+                                    <p class="mt-4 text-sm font-semibold accent-color self-start">Подробнее →</p>
+                                </div>
+                            </div>
+                            <div class="text-5xl font-bold text-white"><span class="text-2xl font-semibold align-middle text-gray-400">от</span> 2 100&nbsp;₽</div>
+                            <p class="mt-1 text-gray-400">в месяц</p>
+                            <div class="mt-8">
+                                <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20узнать%20подробнее%20об%20основных%20тарифах" target="_blank" class="secondary-button w-full">Отправить заявку</a>
+                            </div>
+                        </div>
+                     </div>
+                </section>
+                
+                <div class="marquee">
+                    <div class="marquee-content">
+                        <div class="marquee-item"><span class="accent-color">2+</span> года опыта</div>
+                        <div class="marquee-item"><span class="accent-color">6+</span> партнеров Додо</div>
+                        <div class="marquee-item"><span class="accent-color">45+</span> пиццерий</div>
+                        <div class="marquee-item"><span class="accent-color">500+</span> проверок/мес</div>
+                        <div class="marquee-item"><span class="accent-color">8+</span> экспертов</div>
+                        <div class="marquee-item">Фокус на пищевой безопасности</div>
+                        <div class="marquee-item">Строго по стандартам</div>
+                        <div class="marquee-item"><span class="accent-color">2+</span> года опыта</div>
+                        <div class="marquee-item"><span class="accent-color">6+</span> партнеров Додо</div>
+                        <div class="marquee-item"><span class="accent-color">45+</span> пиццерий</div>
+                        <div class="marquee-item"><span class="accent-color">500+</span> проверок/мес</div>
+                        <div class="marquee-item"><span class="accent-color">8+</span> экспертов</div>
+                        <div class="marquee-item">Фокус на пищевой безопасности</div>
+                        <div class="marquee-item">Строго по стандартам</div>
+                    </div>
+                </div>
+
+                <section class="section-container">
+                    <h2 class="section-heading text-center mb-16 accent-color">Как проходит проверка?</h2>
+                    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-white mb-6">Полная проверка</h3>
+                            <ol class="process-list">
+                                <li>Заходим в ваш архив по всем камерам</li>
+                                <li>Находим нарушения</li>
+                                <li>Фиксируем их скриншотом или на видео</li>
+                                <li>Собираем понятный отчет</li>
+                                <li><a href="https://docs.google.com/spreadsheets/d/1gdDvd4naSJyvErepixkanzvMm1zkWrcPHQVbyLgxHDM/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Заполняем чек-лист клн</a></li>
+                                <li><a href="https://t.me/xfctest/18" target="_blank" rel="noopener noreferrer">Публикуем отчет по проверке в локальной группе tg</a></li>
+                            </ol>
+                        </div>
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-white mb-6">Одна камера</h3>
+                            <ol class="process-list">
+                                <li>Скачиваем запись ГЦ с сайта 30-35 минут</li>
+                                <li>Находим нарушения</li>
+                                <li>Фиксируем их скриншотом или на видео</li>
+                                <li>Собираем понятный отчет</li>
+                                <li><a href="https://docs.google.com/spreadsheets/d/18Wx3RzNX5IIaJKwczVXkb8MUBcyKuP6WzDR89AJQS7k/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Заполняем чек-лист клн</a></li>
+                                <li><a href="https://t.me/xfctest/4" target="_blank" rel="noopener noreferrer">Публикуем отчет по проверке в локальной группе tg</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-container">
+                    <h2 class="section-heading text-center mb-16 accent-color">Наша команда</h2>
+                    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                        <div class="text-center">
+                            <img class="w-40 h-40 rounded-full object-cover mx-auto mb-6 border-2 border-color team-photo" src="https://i.postimg.cc/GHcGdWD4/image.png" alt="Фотография Дмитрия Беликова" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x160/111111/333333?text=Фото';">
+                            <h3 class="text-xl font-bold text-white">Дмитрий Беликов</h3>
+                            <p class="accent-color font-semibold mt-1">лидер онлайн-контроллинга X-FOOD</p>
+                            <p class="text-gray-400 mt-4 text-sm">6 лет с Додо, 7000+ проверок за 2 года</p>
+                        </div>
+                        <div class="text-center">
+                            <img class="w-40 h-40 rounded-full object-cover mx-auto mb-6 border-2 border-color team-photo" src="https://i.postimg.cc/94pj5qHR/image.png" alt="Фотография Виктории Мартиросян" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/160x160/111111/333333?text=Фото';">
+                            <h3 class="text-xl font-bold text-white">Виктория Мартиросян</h3>
+                            <p class="accent-color font-semibold mt-1">бизнес-девелопер X-FOOD</p>
+                            <p class="text-gray-400 mt-4 text-sm max-w-xs mx-auto">8 лет с Додо, 80%+ из 45 пиццерий с Оценкой Здоровья A и B</p>
+                        </div>
+                    </div>
+                    <p class="text-center mt-12 text-lg accent-color font-semibold">8+ экспертов по всей России от Калининграда до Томска</p>
+                </section>
+
+                <section class="section-container">
+                    <h2 class="section-heading text-center mb-4">Доверие, подтвержденное результатами</h2>
+                    <p class="text-center accent-color font-semibold mb-12 max-w-2xl mx-auto">Доля Оценок Здоровья А и B в сети X-FOOD.</p>
+                    <div class="max-w-4xl mx-auto p-4 md:p-8 rounded-2xl border border-color" style="height: 450px;">
+                        <canvas id="healthScoreChart"></canvas>
+                    </div>
+                </section>
+
+                <section class="section-container">
+                    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="section-heading text-white">Нужен <span class="accent-color">особый</span> подход?</h2>
+                            <p class="mt-6 text-xl text-gray-400">Мы можем разработать индивидуальный «Спец. проект» под ваши уникальные задачи. Гибкие чек-листы, любая периодичность и фокус на тех метриках, которые важны именно вам.</p>
+                            <div class="mt-10">
+                                <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20обсудить%20индивидуальный%20«Спец.%20проект»" target="_blank" class="cta-button">Обсудить проект</a>
+                            </div>
+                        </div>
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-bold text-white mb-6">Спец. проект</h3>
+                             <ul class="feature-list">
+                                <li><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>от 1-2 камер в пиццерии</span></li>
+                                <li><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Индивидуальный чек-лист</span></li>
+                                <li><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Результаты в % или баллах</span></li>
+                                <li><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>Чек-лист можно менять</span></li>
+                            </ul>
+                            <div class="mt-6 pt-6 border-t border-color">
+                                 <div class="text-4xl font-bold text-white"><span class="text-xl font-semibold align-middle text-gray-400">от</span> 699&nbsp;₽</div>
+                                 <p class="mt-1 text-gray-400">за 1 проверку</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="text-center border-t border-color py-8">
+                <p class="text-gray-500">&copy; 2023-2025 X-FOOD. Не является публичной офертой.</p>
+            </footer>
+        </div>
+    </div>
+
+    <div id="pricing-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content">
+            <div class="p-6 md:p-10">
+                <div class="flex justify-between items-start mb-8">
+                    <div>
+                        <h2 id="modal-title" class="text-3xl md:text-4xl font-bold text-white"></h2>
+                        <p id="modal-subtitle" class="text-gray-400 mt-2"></p>
+                    </div>
+                    <button id="modal-close-btn" class="text-gray-500 hover:text-white transition-colors flex-shrink-0 ml-4" aria-label="Закрыть модальное окно">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div id="modal-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    </div>
+                 <div class="mt-10 text-center">
+                    <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20отправить%20заявку%20на%20основной%20тариф" target="_blank" class="cta-button">Отправить заявку</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEV: Редактор тарифов (скрыт, открывается по ?dev=tariffs) -->
+    <div id="dev-editor-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-content">
+            <div class="p-6 md:p-10">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Редактор тарифов (dev)</h2>
+                        <p class="text-gray-400 mt-2 text-sm">Открылся, потому что в URL есть параметр <span class="accent-color font-semibold">?dev=tariffs</span>.</p>
+                    </div>
+                    <button id="dev-close-btn" class="text-gray-500 hover:text-white transition-colors flex-shrink-0 ml-4" aria-label="Закрыть редактор">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div id="dev-editor-root" class="space-y-8"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
