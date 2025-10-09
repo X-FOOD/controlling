@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalSubtitle = document.getElementById('modal-subtitle');
     const modalGrid = document.getElementById('modal-grid');
     const closeModalBtn = document.getElementById('modal-close-btn');
-    const fullCheckTrigger = document.getElementById('full-check-trigger');
-    const singleCamTrigger = document.getElementById('single-cam-trigger');
+    const triggersContainer = document.getElementById('tariff-triggers');
+    const specialProjectCard = document.getElementById('special-project-card');
     
     const createCardHTML = (plan) => {
         const featuresHTML = plan.features.map(feature => `
@@ -62,8 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('active');
     };
 
-    fullCheckTrigger.addEventListener('click', () => openModal('full'));
-    singleCamTrigger.addEventListener('click', () => openModal('single'));
     closeModalBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
@@ -90,10 +88,50 @@ document.addEventListener('DOMContentLoaded', () => {
         return {};
     };
 
+    const renderTriggers = (map) => {
+        if (!triggersContainer) return;
+        triggersContainer.innerHTML = '';
+        const entries = Object.entries(map);
+        entries.forEach(([id, t]) => {
+            const div = document.createElement('div');
+            div.className = 'border border-color rounded-xl p-6 cursor-pointer hover:border-gray-500 transition-colors flex flex-col';
+            div.setAttribute('role', 'button');
+            div.setAttribute('aria-label', `Узнать подробнее о тарифе ${t.title}`);
+            div.innerHTML = `
+                <div class="flex-grow">
+                    <h4 class="font-bold text-xl text-white">${t.title}</h4>
+                    <p class="text-gray-400 mt-1">${t.subtitle || ''}</p>
+                </div>
+                <p class="mt-4 text-sm font-semibold accent-color self-start">Подробнее →</p>
+            `;
+            div.addEventListener('click', () => openModal(id));
+            triggersContainer.appendChild(div);
+        });
+    };
+
     (async () => {
         // Тарифы
         const rawTariffs = await loadJSON('data/tariffs.json');
         tariffsDataMap = normalizeTariffsData(rawTariffs);
+        renderTriggers(tariffsDataMap);
+
+        // Спец. проект
+        if (specialProjectCard) {
+            const sp = await loadJSON('data/specialProject.json');
+            if (sp) {
+                const featuresHTML = (sp.features || []).map(f => `
+                    <li><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span>${f}</span></li>
+                `).join('');
+                specialProjectCard.innerHTML = `
+                    <h3 class="text-2xl font-bold text-white mb-6">${sp.title || 'Спец. проект'}</h3>
+                    <ul class="feature-list">${featuresHTML}</ul>
+                    <div class="mt-6 pt-6 border-t border-color">
+                        <div class="text-4xl font-bold text-white"><span class="text-xl font-semibold align-middle text-gray-400">${sp.pricePrefix || 'от'}</span> ${sp.price || ''}</div>
+                        <p class="mt-1 text-gray-400">${sp.priceNote || ''}</p>
+                    </div>
+                `;
+            }
+        }
 
         // График
         if (ctx) {
