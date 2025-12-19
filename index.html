@@ -35,7 +35,7 @@
                     },
                     animation: {
                         'marquee': 'marquee 25s linear infinite',
-                        'blob': 'blob 10s infinite',
+                        'blob': 'blob 20s infinite alternate', /* Замедлил анимацию для плавности */
                     },
                     keyframes: {
                         marquee: {
@@ -44,8 +44,8 @@
                         },
                         blob: {
                             '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '33%': { transform: 'translate(30px, -30px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.95)' },
                             '100%': { transform: 'translate(0px, 0px) scale(1)' },
                         }
                     }
@@ -142,9 +142,11 @@
         .tariff-switch input:checked ~ .switch-bg {
             transform: translateX(100%);
         }
+        /* Исправление цвета текста: когда checked (16), 8 становится серым */
         .tariff-switch input:checked ~ .switch-text-8 {
             color: #9ca3af;
         }
+        /* Исправление цвета текста: когда checked (16), 16 становится черным */
         .tariff-switch input:checked ~ .switch-text-16 {
             color: #000000;
         }
@@ -152,20 +154,39 @@
         /* Декоративные пятна на фоне */
         .blob {
             position: absolute;
-            filter: blur(80px);
+            /* Увеличил размытие до 120px для мягкости */
+            filter: blur(120px);
             z-index: -1;
-            opacity: 0.4;
-            animation: blob 10s infinite;
+            /* Убрал mix-blend-overlay в HTML и настроил прозрачность здесь */
+            animation: blob 20s infinite alternate;
+        }
+
+        /* Noise Overlay для устранения "бандинга" (полос) */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.02; /* Снизил с 0.04 до 0.02 */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
     </style>
 </head>
 <body class="antialiased relative min-h-screen">
 
-    <!-- Ambient Background Blobs -->
+    <!-- Noise Overlay (Fixes banding stripes) -->
+    <div class="noise-overlay"></div>
+
+    <!-- Ambient Background Blobs (Сдвинуты в стороны) -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="blob bg-brand-yellow w-96 h-96 top-0 left-1/4 rounded-full mix-blend-overlay"></div>
-        <div class="blob bg-purple-900 w-96 h-96 bottom-0 right-1/4 rounded-full mix-blend-overlay animation-delay-2000"></div>
-        <div class="blob bg-blue-900 w-80 h-80 top-1/2 left-1/2 rounded-full mix-blend-overlay animation-delay-4000"></div>
+        <!-- Убрал mix-blend-overlay для устранения артефактов цвета, настроил opacity -->
+        <!-- Фиолетовый (бывший желтый): сдвинут влево за экран -->
+        <div class="blob bg-purple-600 w-[500px] h-[500px] top-0 -left-32 md:-left-48 rounded-full opacity-30"></div>
+        <!-- Синий: сдвинут вправо ближе к середине по вертикали, но у края экрана -->
+        <div class="blob bg-blue-900 w-96 h-96 top-1/2 -right-20 md:-right-32 rounded-full opacity-30 animation-delay-4000"></div>
     </div>
 
     <!-- HERO SECTION -->
@@ -205,7 +226,7 @@
                 
                 <!-- 1. КАМЕРА ГЦ -->
                 <div class="glass-panel rounded-3xl p-6 flex flex-col transition-all duration-300 relative h-full group" id="card-gc">
-                    <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">Камера ГЦ</h3>
+                    <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Камера ГЦ»</h3>
                     <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Сфокусированный контроль по камере горячего цеха с сайта dodopizza.ru</p>
                     
                     <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
@@ -219,22 +240,24 @@
                             <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5">
                                 <input type="checkbox" class="sr-only peer" onchange="toggleTariff('gc', this.checked)">
                                 <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
-                                <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-gray-300 transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
+                                <!-- ТЕКСТ 8 ПРОВЕРОК: text-black (активный по умолчанию) -->
+                                <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
                                 <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full">16 проверок</span>
                             </label>
                         </div>
 
-                        <div class="text-2xl font-bold text-white mb-4 transition-all" id="price-gc">3 999 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></div>
-                        <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" class="block w-full py-3 px-4 bg-brand-yellow/90 backdrop-blur-sm text-black text-center rounded-xl hover:bg-yellow-400 transition-all text-xs font-bold uppercase shadow-[0_0_15px_rgba(255,215,0,0.2)] hover:shadow-[0_0_25px_rgba(255,215,0,0.4)]">Попробовать за 1 ₽</a>
+                        <div class="text-2xl font-bold text-white mb-4 transition-all" id="price-gc">4 190 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></div>
+                        <!-- ОБНОВЛЕННАЯ КНОПКА (Стиль как в Эксклюзиве: стекло) -->
+                        <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" class="block w-full py-3 px-4 border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-center rounded-xl transition-all text-xs font-bold uppercase text-white">Попробовать за 1 ₽</a>
                     </div>
                 </div>
 
-                <!-- 2. ПОЛНЫЕ ПРОВЕРКИ -->
+                <!-- 2. Вся пиццерия -->
                 <div class="glass-panel-accent rounded-3xl p-6 flex flex-col relative h-full" id="card-full">
                     <!-- Glow effect behind -->
                     <div class="absolute -inset-1 bg-brand-yellow/20 rounded-3xl blur-xl -z-10 opacity-30"></div>
 
-                    <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">Полные проверки</h3>
+                    <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Вся пиццерия»</h3>
                     <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Комплексный контроль по всем камерам пиццерии. Из любого приложения от DMSS до RL</p>
                     
                     <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
@@ -248,7 +271,8 @@
                             <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5">
                                 <input type="checkbox" class="sr-only peer" onchange="toggleTariff('full', this.checked)">
                                 <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
-                                <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-gray-300 transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
+                                <!-- ТЕКСТ 8 ПРОВЕРОК: text-black (активный по умолчанию) -->
+                                <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
                                 <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full">16 проверок</span>
                             </label>
                         </div>
@@ -262,7 +286,7 @@
 
                 <!-- 3. ЭКСКЛЮЗИВ -->
                 <div class="glass-panel rounded-3xl p-6 flex flex-col transition-all duration-300 h-full">
-                    <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">Эксклюзив</h3>
+                    <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Эксклюзив»</h3>
                     <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Индивидуальные условия под ваши задачи.</p>
                     
                     <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
@@ -400,6 +424,21 @@
             <p class="text-center mt-12 text-brand-yellow font-bold uppercase tracking-wider text-base drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">
                 10+ экспертов по всей России от Калининграда до Хабаровска
             </p>
+        </div>
+    </section>
+
+    <!-- NEW CTA BOTTOM SECTION -->
+    <section class="py-12 relative z-10">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" target="_blank" 
+                   class="btn-liquid-gold text-black font-bold py-3 px-8 rounded-full text-base transition-all duration-300 hover:scale-105">
+                    Попробовать за 1 ₽
+                </a>
+                <a href="#tariffs" class="btn-glass-ghost text-gray-300 hover:text-white font-medium py-3 px-8 rounded-full transition-all text-base hover:scale-105">
+                    Тарифы
+                </a>
+            </div>
         </div>
     </section>
 
