@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X-FOOD Controlling | Независимый контроль</title>
-    <meta name="description" content="Устраняем нарушения стандартов раньше, чем их заметит УК.">
+    <meta name="description" content="Выявляем нарушения стандартов раньше, чем их заметит УК.">
     
     <!-- Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,7 +94,7 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20получить%20аудит%20смены" target="_blank" 
+                <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" target="_blank" 
                    class="bg-brand-yellow text-black font-bold py-3 px-6 rounded-full text-base shadow-glow hover:shadow-glow-hover hover:scale-105 transition-all duration-300">
                     Попробовать за 1 ₽
                 </a>
@@ -139,7 +139,7 @@
                         </div>
 
                         <div class="text-2xl font-bold text-white mb-4 transition-all" id="price-gc">3 999 ₽ <span class="text-xs text-gray-500 font-normal">/ мес</span></div>
-                        <a href="https://t.me/dodo_ul?text=Хочу%20тариф%20Камера%20ГЦ" class="block w-full py-3 px-4 bg-brand-yellow text-black text-center rounded-lg hover:bg-yellow-400 transition-colors text-xs font-bold uppercase">Попробовать за 1 ₽</a>
+                        <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" class="block w-full py-3 px-4 bg-brand-yellow text-black text-center rounded-lg hover:bg-yellow-400 transition-colors text-xs font-bold uppercase">Попробовать за 1 ₽</a>
                     </div>
                 </div>
 
@@ -167,7 +167,7 @@
                         <div class="text-2xl font-bold text-white mb-4 transition-all flex items-center flex-wrap gap-2 min-h-[32px]" id="price-full">
                             <span>9 900 ₽ <span class="text-xs text-gray-500 font-normal">/ мес</span></span>
                         </div>
-                        <a href="https://t.me/dodo_ul?text=Хочу%20тариф%20Полные%20проверки" class="block w-full py-3 px-4 bg-brand-yellow text-black text-center rounded-lg hover:bg-yellow-400 transition-colors text-xs font-bold uppercase shadow-glow">Попробовать за 1 ₽</a>
+                        <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" class="block w-full py-3 px-4 bg-brand-yellow text-black text-center rounded-lg hover:bg-yellow-400 transition-colors text-xs font-bold uppercase shadow-glow">Попробовать за 1 ₽</a>
                     </div>
                 </div>
 
@@ -188,7 +188,7 @@
                         <div class="h-[32px] mb-4 w-full"></div>
 
                         <div class="text-2xl font-bold text-white mb-4">от 1 500 ₽ <span class="text-xs text-gray-500 font-normal">/ проверка</span></div>
-                        <a href="https://t.me/dodo_ul?text=Хочу%20обсудить%20Эксклюзив" class="block w-full py-3 px-4 border border-gray-600 text-center rounded-lg hover:bg-gray-800 transition-colors text-xs font-bold uppercase">Обсудить</a>
+                        <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20обсудить%20Эксклюзивный%20тариф" class="block w-full py-3 px-4 border border-gray-600 text-center rounded-lg hover:bg-gray-800 transition-colors text-xs font-bold uppercase">Обсудить</a>
                     </div>
                 </div>
 
@@ -317,7 +317,7 @@
     <footer class="py-8 border-t border-brand-border bg-black">
         <div class="container mx-auto px-4 flex justify-between items-center text-sm text-gray-500">
             <div class="font-bold text-white text-lg">X-FOOD</div>
-            <div>© 2023-2025</div>
+            <div>Не является публичной офертой © 2023-2025</div>
         </div>
     </footer>
 
@@ -334,9 +334,7 @@
                 }
             } else if (type === 'full') {
                 if (is16) {
-                    // Бейдж
-                    priceElement.innerHTML = '<span>16 900 ₽ <span class="text-xs text-gray-500 font-normal">/ мес</span></span> <span class="text-[7px] text-green-150 bg-green-300/6 px-2 py-1 rounded ml-1 font-medium">дешевле на 14%</span>';
-                } else {
+                    priceElement.innerHTML = '<span>16 900 ₽ <span class="text-xs text-gray-500 font-normal">/ мес</span></span>; 
                     priceElement.innerHTML = '<span>9 900 ₽ <span class="text-xs text-gray-500 font-normal">/ мес</span></span>';
                 }
             }
