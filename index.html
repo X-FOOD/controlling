@@ -231,15 +231,19 @@
                     <div class="mt-auto">
                         <!-- SWITCH -->
                         <div class="flex justify-center mb-4 h-[32px]">
-                            <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5">
+                            <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5 overflow-visible">
                                 <input type="checkbox" class="sr-only peer" onchange="toggleTariff('gc', this.checked)">
                                 <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
                                 <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
-                                <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full">16 проверок</span>
+                                <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full relative">
+                                    16 проверок
+                                    <!-- Discount Badge -->
+                                    <span class="absolute -top-3 -right-1 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-sm transform rotate-12 border border-red-500/50">-12%</span>
+                                </span>
                             </label>
                         </div>
 
-                        <div class="text-2xl font-bold text-white mb-4 transition-all" id="price-gc">4 190 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></div>
+                        <div class="text-2xl font-bold text-white mb-4 transition-all" id="price-gc">4 490 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></div>
                         <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" class="block w-full py-3 px-4 border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-center rounded-xl transition-all text-xs font-bold uppercase text-white">Попробовать за 1 ₽</a>
                     </div>
                 </div>
@@ -260,11 +264,15 @@
                     <div class="mt-auto">
                         <!-- SWITCH -->
                         <div class="flex justify-center mb-4 h-[32px]">
-                            <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5">
+                            <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5 overflow-visible">
                                 <input type="checkbox" class="sr-only peer" onchange="toggleTariff('full', this.checked)">
                                 <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
                                 <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
-                                <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full">16 проверок</span>
+                                <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full relative">
+                                    16 проверок
+                                    <!-- Discount Badge -->
+                                    <span class="absolute -top-3 -right-1 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-sm transform rotate-12 border border-red-500/50">-15%</span>
+                                </span>
                             </label>
                         </div>
 
@@ -470,7 +478,7 @@
                 if (is16) {
                     priceElement.innerHTML = '7 890 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span>';
                 } else {
-                    priceElement.innerHTML = '4 190 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span>';
+                    priceElement.innerHTML = '4 490 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span>';
                 }
             } else if (type === 'full') {
                 if (is16) {
