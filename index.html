@@ -34,13 +34,13 @@
                         'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
                     },
                     animation: {
-                        'marquee': 'marquee 25s linear infinite',
-                        'blob': 'blob 20s infinite alternate', /* Замедлил анимацию для плавности */
+                        'marquee': 'marquee 30s linear infinite', /* Оптимальная скорость для 4 блоков */
+                        'blob': 'blob 20s infinite alternate',
                     },
                     keyframes: {
                         marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
+                            '0%': { transform: 'translate3d(0, 0, 0)' },
+                            '100%': { transform: 'translate3d(-25%, 0, 0)' }, /* Сдвигаем на 25% (один блок из 4) */
                         },
                         blob: {
                             '0%': { transform: 'translate(0px, 0px) scale(1)' },
@@ -58,9 +58,8 @@
         body {
             background-color: #050505;
             color: #e5e5e5;
-            /* Более глубокий фон для контраста со стеклом */
             background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #000000 100%);
-            overflow-x: hidden; /* Prevent horizontal scroll from blobs */
+            overflow-x: hidden;
         }
 
         /* Glassmorphism Classes */
@@ -69,20 +68,19 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 1px solid rgba(255, 255, 255, 0.15); /* Блик сверху */
-            border-left: 1px solid rgba(255, 255, 255, 0.15); /* Блик слева */
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
         .glass-panel:hover {
             background: rgba(255, 255, 255, 0.06);
             border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.05); /* Легкое золотое свечение */
+            box-shadow: 0 8px 32px 0 rgba(255, 215, 0, 0.05);
         }
 
-        /* Акцентная стеклянная панель (например, для выделенного тарифа) */
         .glass-panel-accent {
-            background: rgba(255, 215, 0, 0.05); /* Еле заметный желтый оттенок */
+            background: rgba(255, 215, 0, 0.05);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 215, 0, 0.3);
@@ -127,7 +125,12 @@
 
         /* Marquee styles */
         .marquee-container {
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            /* Уменьшил маску до 2% по краям, чтобы текст было видно сразу */
+            mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
+        }
+        
+        .animate-marquee {
+            will-change: transform;
         }
 
         /* Custom toggle styles */
@@ -142,26 +145,20 @@
         .tariff-switch input:checked ~ .switch-bg {
             transform: translateX(100%);
         }
-        /* Исправление цвета текста: когда checked (16), 8 становится серым */
         .tariff-switch input:checked ~ .switch-text-8 {
             color: #9ca3af;
         }
-        /* Исправление цвета текста: когда checked (16), 16 становится черным */
         .tariff-switch input:checked ~ .switch-text-16 {
             color: #000000;
         }
 
-        /* Декоративные пятна на фоне */
         .blob {
             position: absolute;
-            /* Увеличил размытие до 120px для мягкости */
             filter: blur(120px);
             z-index: -1;
-            /* Убрал mix-blend-overlay в HTML и настроил прозрачность здесь */
             animation: blob 20s infinite alternate;
         }
 
-        /* Noise Overlay для устранения "бандинга" (полос) */
         .noise-overlay {
             position: fixed;
             top: 0;
@@ -170,22 +167,19 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
-            opacity: 0.02; /* Снизил с 0.04 до 0.02 */
+            opacity: 0.02;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
     </style>
 </head>
 <body class="antialiased relative min-h-screen">
 
-    <!-- Noise Overlay (Fixes banding stripes) -->
+    <!-- Noise Overlay -->
     <div class="noise-overlay"></div>
 
-    <!-- Ambient Background Blobs (Сдвинуты в стороны) -->
+    <!-- Ambient Background Blobs -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <!-- Убрал mix-blend-overlay для устранения артефактов цвета, настроил opacity -->
-        <!-- Фиолетовый (бывший желтый): сдвинут влево за экран -->
         <div class="blob bg-purple-600 w-[500px] h-[500px] top-0 -left-32 md:-left-48 rounded-full opacity-30"></div>
-        <!-- Синий: сдвинут вправо ближе к середине по вертикали, но у края экрана -->
         <div class="blob bg-blue-900 w-96 h-96 top-1/2 -right-20 md:-right-32 rounded-full opacity-30 animation-delay-4000"></div>
     </div>
 
@@ -216,7 +210,6 @@
 
     <!-- TARIFFS SECTION -->
     <section id="tariffs" class="py-16 relative">
-        <!-- Glass separator line -->
         <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent opacity-50"></div>
         
         <div class="container mx-auto px-4 relative z-10">
@@ -227,9 +220,10 @@
                 <!-- 1. КАМЕРА ГЦ -->
                 <div class="glass-panel rounded-3xl p-6 flex flex-col transition-all duration-300 relative h-full group" id="card-gc">
                     <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Камера ГЦ»</h3>
-                    <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Сфокусированный контроль по камере горячего цеха с сайта dodopizza.ru</p>
+                    <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Сфокусированный контроль по камере горячего цеха.</p>
                     
                     <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
+                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Используем запись с сайта dodopizza.ru</span></li>
                         <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Личный кабинет в CRM с онлайн-статистикой</span></li>
                         <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Итоговая встреча за месяц</span></li>
                     </ul>
@@ -240,27 +234,25 @@
                             <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5">
                                 <input type="checkbox" class="sr-only peer" onchange="toggleTariff('gc', this.checked)">
                                 <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
-                                <!-- ТЕКСТ 8 ПРОВЕРОК: text-black (активный по умолчанию) -->
                                 <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
                                 <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full">16 проверок</span>
                             </label>
                         </div>
 
                         <div class="text-2xl font-bold text-white mb-4 transition-all" id="price-gc">4 190 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></div>
-                        <!-- ОБНОВЛЕННАЯ КНОПКА (Стиль как в Эксклюзиве: стекло) -->
                         <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" class="block w-full py-3 px-4 border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-center rounded-xl transition-all text-xs font-bold uppercase text-white">Попробовать за 1 ₽</a>
                     </div>
                 </div>
 
                 <!-- 2. Вся пиццерия -->
                 <div class="glass-panel-accent rounded-3xl p-6 flex flex-col relative h-full" id="card-full">
-                    <!-- Glow effect behind -->
                     <div class="absolute -inset-1 bg-brand-yellow/20 rounded-3xl blur-xl -z-10 opacity-30"></div>
 
                     <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Вся пиццерия»</h3>
-                    <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Комплексный контроль по всем камерам пиццерии. Из любого приложения от DMSS до RL</p>
+                    <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Комплексный контроль по всем камерам пиццерии.</p>
                     
                     <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
+                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Работаем с любым приложением: от DMSS до RedLine</span></li>
                         <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Личный кабинет в CRM с онлайн-статистикой</span></li>
                         <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Итоговая встреча за месяц</span></li>
                     </ul>
@@ -271,7 +263,6 @@
                             <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5">
                                 <input type="checkbox" class="sr-only peer" onchange="toggleTariff('full', this.checked)">
                                 <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
-                                <!-- ТЕКСТ 8 ПРОВЕРОК: text-black (активный по умолчанию) -->
                                 <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
                                 <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full">16 проверок</span>
                             </label>
@@ -292,7 +283,7 @@
                     <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
                         <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Любое количество камер</li>
                         <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> От 8 проверок в месяц</li>
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Чек-лист можно менять</li>
+                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Индивидуальный чек-лист</li>
                         <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Персональный менеджер</li>
                     </ul>
                     
@@ -308,32 +299,52 @@
             </div>
         </div>
         
-        <!-- Bottom glass separator -->
         <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent opacity-50"></div>
     </section>
 
     <!-- MARQUEE SECTION -->
     <div class="py-8 bg-white/5 backdrop-blur-md border-y border-white/10 overflow-hidden marquee-container relative z-10">
         <div class="flex whitespace-nowrap animate-marquee">
-            <!-- Content duplicated for seamless loop -->
-            <div class="flex gap-16 items-center mx-8">
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">2+</span> года опыта</span>
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">8+</span> партнеров Додо</span>
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">60+</span> пиццерий</span>
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">700+</span> проверок/мес</span>
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">10+</span> экспертов</span>
+            <!-- 4 Identical blocks for seamless looping. Animation moves by 25% (1 block) -->
+            
+            <!-- Block 1 -->
+            <div class="flex gap-16 items-center pr-16">
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">3</span> года на рынке</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Собственная CRM система</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">8</span> партнеров Додо</span>
                 <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Фокус на пищевой безопасности</span>
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Строго по стандартам</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">70</span> пиццерий</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Строго по стандартам Додо</span>
             </div>
-            <!-- Duplicate -->
-            <div class="flex gap-16 items-center mx-8">
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">2+</span> года опыта</span>
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">8+</span> партнеров Додо</span>
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">60+</span> пиццерий</span>
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">700+</span> проверок/мес</span>
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">10+</span> экспертов</span>
+
+            <!-- Block 2 -->
+            <div class="flex gap-16 items-center pr-16">
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">3</span> года на рынке</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Собственная CRM система</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">8</span> партнеров Додо</span>
                 <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Фокус на пищевой безопасности</span>
-                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Строго по стандартам</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">70</span> пиццерий</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Строго по стандартам Додо</span>
+            </div>
+
+            <!-- Block 3 -->
+            <div class="flex gap-16 items-center pr-16">
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">3</span> года на рынке</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Собственная CRM система</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">8</span> партнеров Додо</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Фокус на пищевой безопасности</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">70</span> пиццерий</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Строго по стандартам Додо</span>
+            </div>
+
+            <!-- Block 4 -->
+            <div class="flex gap-16 items-center pr-16">
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">3</span> года на рынке</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Собственная CRM система</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">8</span> партнеров Додо</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Фокус на пищевой безопасности</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm"><span class="text-brand-yellow font-bold text-2xl drop-shadow-[0_0_5px_rgba(255,215,0,0.6)]">70</span> пиццерий</span>
+                <span class="text-gray-300 text-xl font-medium drop-shadow-sm">Строго по стандартам Додо</span>
             </div>
         </div>
     </div>
@@ -370,7 +381,7 @@
     </section>
 
     <!-- TEAM SECTION -->
-    <section class="py-16 relative border-t border-white/10 z-10">
+    <section class="pt-16 pb-0 relative border-t border-white/10 z-10">
         <div class="container mx-auto px-4">
             <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 drop-shadow-md">Команда</h2>
             
@@ -421,14 +432,14 @@
                 </div>
             </div>
             
-            <p class="text-center mt-12 text-brand-yellow font-bold uppercase tracking-wider text-base drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">
+            <p class="text-center mt-8 text-brand-yellow font-bold uppercase tracking-wider text-base drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">
                 10+ экспертов по всей России от Калининграда до Хабаровска
             </p>
         </div>
     </section>
 
     <!-- NEW CTA BOTTOM SECTION -->
-    <section class="py-12 relative z-10">
+    <section class="pt-8 pb-16 relative z-10">
         <div class="container mx-auto px-4 text-center">
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" target="_blank" 
