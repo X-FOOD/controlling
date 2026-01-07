@@ -193,7 +193,7 @@
             </h1>
             
             <p class="text-base md:text-lg text-gray-300 mb-8 max-w-2xl mx-auto font-medium drop-shadow-md">
-                Независимый аудит процессов для партнеров Додо Пиццы
+                Независимый аудит процессов для партнеров Додо Пиццы и Дринкит
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -213,98 +213,193 @@
         <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent opacity-50"></div>
         
         <div class="container mx-auto px-4 relative z-10">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 drop-shadow-md">Варианты подписки</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
-                
-                <!-- 1. КАМЕРА ГЦ -->
-                <div class="glass-panel rounded-3xl p-6 flex flex-col transition-all duration-300 relative h-full group" id="card-gc">
-                    <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Камера ГЦ»</h3>
-                    <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Сфокусированный контроль по камере горячего цеха.</p>
-                    
-                    <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Используем запись с сайта dodopizza.ru</span></li>
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Личный кабинет в CRM с онлайн-статистикой</span></li>
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Итоговая встреча за месяц</span></li>
-                    </ul>
-                    
-                    <div class="mt-auto">
-                        <!-- SWITCH -->
-                        <div class="flex justify-center mb-4 h-[32px]">
-                            <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5 overflow-visible">
-                                <input type="checkbox" class="sr-only peer" onchange="toggleTariff('gc', this.checked)">
-                                <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
-                                <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
-                                <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full relative">
-                                    16 проверок
-                                    <!-- Discount Badge -->
-                                    <span class="absolute -top-3 -right-1 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-sm transform rotate-12 border border-red-500/50">-12%</span>
-                                </span>
-                            </label>
-                        </div>
 
-                        <div class="text-2xl font-bold text-white mb-4 transition-all" id="price-gc">4 490 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></div>
-                        <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" class="block w-full py-3 px-4 border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-center rounded-xl transition-all text-xs font-bold uppercase text-white">Попробовать за 1 ₽</a>
-                    </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 drop-shadow-md">Варианты подписки</h2>
+
+            <!-- BRAND TOGGLE SWITCH -->
+            <div class="flex justify-center mb-10">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-full flex relative shadow-lg scale-90 sm:scale-100 origin-center">
+                    <!-- Sliding Background: Initially Orange for Dodo -->
+                    <div id="brand-switch-bg" class="absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-[#FF6900] rounded-full shadow-[0_0_15px_rgba(255,105,0,0.4)] transition-all duration-300 z-0"></div>
+                    
+                    <button onclick="switchBrand('dodo')" class="relative z-10 px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-colors duration-300 w-32 sm:w-40 text-black" id="btn-dodo">
+                        Додо Пицца
+                    </button>
+                    <button onclick="switchBrand('drinkit')" class="relative z-10 px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-colors duration-300 w-32 sm:w-40 text-gray-400 hover:text-white" id="btn-drinkit">
+                        Дринкит
+                    </button>
                 </div>
-
-                <!-- 2. Вся пиццерия -->
-                <div class="glass-panel-accent rounded-3xl p-6 flex flex-col relative h-full" id="card-full">
-                    <div class="absolute -inset-1 bg-brand-yellow/20 rounded-3xl blur-xl -z-10 opacity-30"></div>
-
-                    <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Вся пиццерия»</h3>
-                    <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Комплексный контроль по всем камерам пиццерии.</p>
-                    
-                    <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Работаем с любым приложением: от DMSS до RedLine</span></li>
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Личный кабинет в CRM с онлайн-статистикой</span></li>
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Итоговая встреча за месяц</span></li>
-                    </ul>
-                    
-                    <div class="mt-auto">
-                        <!-- SWITCH -->
-                        <div class="flex justify-center mb-4 h-[32px]">
-                            <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5 overflow-visible">
-                                <input type="checkbox" class="sr-only peer" onchange="toggleTariff('full', this.checked)">
-                                <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
-                                <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
-                                <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full relative">
-                                    16 проверок
-                                    <!-- Discount Badge -->
-                                    <span class="absolute -top-3 -right-1 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-sm transform rotate-12 border border-red-500/50">-15%</span>
-                                </span>
-                            </label>
-                        </div>
-
-                        <div class="text-2xl font-bold text-white mb-4 transition-all flex items-center flex-wrap gap-2 min-h-[32px]" id="price-full">
-                            <span>9 900 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></span>
-                        </div>
-                        <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" class="block w-full py-3 px-4 btn-liquid-gold text-black text-center rounded-xl transition-all text-xs font-bold uppercase">Попробовать за 1 ₽</a>
-                    </div>
-                </div>
-
-                <!-- 3. ЭКСКЛЮЗИВ -->
-                <div class="glass-panel rounded-3xl p-6 flex flex-col transition-all duration-300 h-full">
-                    <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Эксклюзив»</h3>
-                    <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Индивидуальные условия под ваши задачи.</p>
-                    
-                    <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Любое количество камер</li>
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> От 8 проверок в месяц</li>
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Индивидуальный чек-лист</li>
-                        <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Персональный менеджер</li>
-                    </ul>
-                    
-                    <div class="mt-auto">
-                        <!-- SPACER DIV -->
-                        <div class="h-[32px] mb-4 w-full"></div>
-
-                        <div class="text-2xl font-bold text-white mb-4">от 1 500 ₽ <span class="text-xs text-gray-400 font-normal">/ проверка</span></div>
-                        <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20обсудить%20Эксклюзивный%20тариф" class="block w-full py-3 px-4 border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-center rounded-xl transition-all text-xs font-bold uppercase text-white">Обсудить</a>
-                    </div>
-                </div>
-
             </div>
+            
+            <!-- DODO CONTENT (DEFAULT VISIBLE) -->
+            <div id="dodo-content" class="transition-opacity duration-300">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
+                    
+                    <!-- 1. КАМЕРА ГЦ -->
+                    <div class="glass-panel rounded-3xl p-6 flex flex-col transition-all duration-300 relative h-full group" id="card-gc">
+                        <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Камера ГЦ»</h3>
+                        <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Сфокусированный контроль по камере горячего цеха.</p>
+                        
+                        <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Используем запись с сайта dodopizza.ru</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Личный кабинет в CRM с онлайн-статистикой</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Итоговая встреча за месяц</span></li>
+                        </ul>
+                        
+                        <div class="mt-auto">
+                            <!-- SWITCH -->
+                            <div class="flex justify-center mb-4 h-[32px]">
+                                <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5 overflow-visible">
+                                    <input type="checkbox" class="sr-only peer" onchange="toggleTariff('gc', this.checked, 'dodo')">
+                                    <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
+                                    <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
+                                    <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full relative">
+                                        16 проверок
+                                        <!-- Discount Badge -->
+                                        <span class="absolute -top-3 -right-1 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-sm transform rotate-12 border border-red-500/50">-12%</span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="text-2xl font-bold text-white mb-4 transition-all" id="price-gc-dodo">4 490 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></div>
+                            <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" class="block w-full py-3 px-4 border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-center rounded-xl transition-all text-xs font-bold uppercase text-white">Попробовать за 1 ₽</a>
+                        </div>
+                    </div>
+
+                    <!-- 2. Вся пиццерия -->
+                    <div class="glass-panel-accent rounded-3xl p-6 flex flex-col relative h-full" id="card-full">
+                        <div class="absolute -inset-1 bg-brand-yellow/20 rounded-3xl blur-xl -z-10 opacity-30"></div>
+
+                        <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Вся пиццерия»</h3>
+                        <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Комплексный контроль по всем камерам пиццерии.</p>
+                        
+                        <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Работаем с любым приложением: от DMSS до RedLine</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Личный кабинет в CRM с онлайн-статистикой</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Итоговая встреча за месяц</span></li>
+                        </ul>
+                        
+                        <div class="mt-auto">
+                            <!-- SWITCH -->
+                            <div class="flex justify-center mb-4 h-[32px]">
+                                <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5 overflow-visible">
+                                    <input type="checkbox" class="sr-only peer" onchange="toggleTariff('full', this.checked, 'dodo')">
+                                    <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
+                                    <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
+                                    <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full relative">
+                                        16 проверок
+                                        <!-- Discount Badge -->
+                                        <span class="absolute -top-3 -right-1 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-sm transform rotate-12 border border-red-500/50">-15%</span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="text-2xl font-bold text-white mb-4 transition-all flex items-center flex-wrap gap-2 min-h-[32px]" id="price-full-dodo">
+                                <span>9 900 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></span>
+                            </div>
+                            <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20за%201%20рубль" class="block w-full py-3 px-4 btn-liquid-gold text-black text-center rounded-xl transition-all text-xs font-bold uppercase">Попробовать за 1 ₽</a>
+                        </div>
+                    </div>
+
+                    <!-- 3. ЭКСКЛЮЗИВ -->
+                    <div class="glass-panel rounded-3xl p-6 flex flex-col transition-all duration-300 h-full">
+                        <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Эксклюзив»</h3>
+                        <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Индивидуальные условия под ваши задачи.</p>
+                        
+                        <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Любое количество камер</li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> От 8 проверок в месяц</li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Индивидуальный чек-лист</li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Персональный менеджер</li>
+                        </ul>
+                        
+                        <div class="mt-auto">
+                            <!-- SPACER DIV -->
+                            <div class="h-[32px] mb-4 w-full"></div>
+
+                            <div class="text-2xl font-bold text-white mb-4">от 1 500 ₽ <span class="text-xs text-gray-400 font-normal">/ проверка</span></div>
+                            <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20обсудить%20Эксклюзивный%20тариф" class="block w-full py-3 px-4 border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-center rounded-xl transition-all text-xs font-bold uppercase text-white">Обсудить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DRINKIT CONTENT (HIDDEN INITIALLY) -->
+            <div id="drinkit-content" class="hidden opacity-0 transition-opacity duration-300">
+                 <!-- Changed grid to max-w-4xl and lg:grid-cols-2 to center the 2 cards nicely -->
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    
+                    <!-- 1. ЛАЙТ (DRINKIT) -->
+                    <div class="glass-panel rounded-3xl p-6 flex flex-col transition-all duration-300 relative h-full group">
+                        <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Лайт»</h3>
+                        <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Сфокусированный контроль зоны приготовления напитков.</p>
+                        
+                        <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Используем короткую запись с основной камеры</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Личный кабинет в CRM с онлайн-статистикой</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Итоговая встреча за месяц</span></li>
+                        </ul>
+                        
+                        <div class="mt-auto">
+                            <!-- SWITCH -->
+                            <div class="flex justify-center mb-4 h-[32px]">
+                                <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5 overflow-visible">
+                                    <input type="checkbox" class="sr-only peer" onchange="toggleTariff('gc', this.checked, 'drinkit')">
+                                    <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
+                                    <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
+                                    <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full relative">
+                                        16 проверок
+                                        <!-- Discount Badge -->
+                                        <span class="absolute -top-3 -right-1 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-sm transform rotate-12 border border-red-500/50">-10%</span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="text-2xl font-bold text-white mb-4 transition-all" id="price-gc-drinkit">4 190 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></div>
+                            <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20для%20Дринкит" class="block w-full py-3 px-4 border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-center rounded-xl transition-all text-xs font-bold uppercase text-white">Попробовать за 1 ₽</a>
+                        </div>
+                    </div>
+
+                    <!-- 2. Вся кофейня (DRINKIT) -->
+                    <div class="glass-panel-accent rounded-3xl p-6 flex flex-col relative h-full">
+                        <div class="absolute -inset-1 bg-brand-yellow/20 rounded-3xl blur-xl -z-10 opacity-30"></div>
+
+                        <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Вся кофейня»</h3>
+                        <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Комплексный контроль всех зон кофейни.</p>
+                        
+                        <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Работаем с любым приложением: от DMSS до RedLine</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Личный кабинет в CRM с онлайн-статистикой</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Итоговая встреча за месяц</span></li>
+                        </ul>
+                        
+                        <div class="mt-auto">
+                            <!-- SWITCH -->
+                            <div class="flex justify-center mb-4 h-[32px]">
+                                <label class="tariff-switch relative inline-flex items-center cursor-pointer bg-black/40 shadow-inner rounded-xl p-1 w-full h-full border border-white/5 overflow-visible">
+                                    <input type="checkbox" class="sr-only peer" onchange="toggleTariff('full', this.checked, 'drinkit')">
+                                    <div class="switch-bg absolute left-1 top-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-brand-yellow rounded-lg shadow-[0_2px_10px_rgba(255,215,0,0.3)] transition-transform duration-300"></div>
+                                    <span class="switch-text-8 z-10 w-1/2 text-center text-xs font-bold text-black transition-colors duration-300 flex items-center justify-center h-full">8 проверок</span>
+                                    <span class="switch-text-16 z-10 w-1/2 text-center text-xs font-bold text-gray-400 peer-checked:text-black transition-colors duration-300 flex items-center justify-center h-full relative">
+                                        16 проверок
+                                        <!-- Discount Badge -->
+                                        <span class="absolute -top-3 -right-1 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-sm transform rotate-12 border border-red-500/50">-10%</span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="text-2xl font-bold text-white mb-4 transition-all flex items-center flex-wrap gap-2 min-h-[32px]" id="price-full-drinkit">
+                                <span>8 290 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></span>
+                            </div>
+                            <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20попробовать%20проверку%20для%20Дринкит" class="block w-full py-3 px-4 btn-liquid-gold text-black text-center rounded-xl transition-all text-xs font-bold uppercase">Попробовать за 1 ₽</a>
+                        </div>
+                    </div>
+
+                    <!-- Removed Exclusive Card for Drinkit -->
+
+                </div>
+            </div>
+
         </div>
         
         <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent opacity-50"></div>
@@ -465,27 +560,102 @@
     <footer class="py-8 border-t border-white/10 bg-black/80 backdrop-blur-xl relative z-20">
         <div class="container mx-auto px-4 flex justify-between items-center text-sm text-gray-500">
             <div class="font-bold text-white text-lg">X-FOOD</div>
-            <div>Не является публичной офертой © 2023-2025</div>
+            <div>Не является публичной офертой © 2023-2026</div>
         </div>
     </footer>
 
-    <!-- SCRIPT FOR TARIFF SWITCH -->
+    <!-- SCRIPT FOR SWITCHING AND TARIFFS -->
     <script>
-        function toggleTariff(type, is16) {
-            const priceElement = document.getElementById(`price-${type}`);
+        function toggleTariff(type, is16, brand = 'dodo') {
+            // Determine suffix based on brand
+            const suffix = brand === 'dodo' ? '-dodo' : '-drinkit';
+            const priceElement = document.getElementById(`price-${type}${suffix}`);
             
-            if (type === 'gc') {
-                if (is16) {
-                    priceElement.innerHTML = '7 890 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span>';
-                } else {
-                    priceElement.innerHTML = '4 490 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span>';
+            if (!priceElement) return;
+
+            // DODO PRICING LOGIC
+            if (brand === 'dodo') {
+                if (type === 'gc') {
+                    if (is16) {
+                        priceElement.innerHTML = '7 890 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span>';
+                    } else {
+                        priceElement.innerHTML = '4 490 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span>';
+                    }
+                } else if (type === 'full') {
+                    if (is16) {
+                        priceElement.innerHTML = '<span>16 900 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></span>'; 
+                     } else {         
+                        priceElement.innerHTML = '<span>9 900 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></span>';
+                    }
                 }
-            } else if (type === 'full') {
-                if (is16) {
-                    priceElement.innerHTML = '<span>16 900 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></span>'; 
-                 } else {        
-                    priceElement.innerHTML = '<span>9 900 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></span>';
+            } 
+            // DRINKIT PRICING LOGIC
+            else if (brand === 'drinkit') {
+                if (type === 'gc') { // Лайт
+                    if (is16) {
+                        priceElement.innerHTML = '7 490 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span>';
+                    } else {
+                        priceElement.innerHTML = '4 190 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span>';
+                    }
+                } else if (type === 'full') { // Вся кофейня
+                    if (is16) {
+                        priceElement.innerHTML = '<span>14 890 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></span>'; 
+                     } else {         
+                        priceElement.innerHTML = '<span>8 290 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></span>';
+                    }
                 }
+            }
+        }
+
+        function switchBrand(brand) {
+            const dodoContent = document.getElementById('dodo-content');
+            const drinkitContent = document.getElementById('drinkit-content');
+            const bg = document.getElementById('brand-switch-bg');
+            const btnDodo = document.getElementById('btn-dodo');
+            const btnDrinkit = document.getElementById('btn-drinkit');
+
+            if (brand === 'dodo') {
+                // Animate BG & Change Color to Dodo Orange
+                bg.style.transform = 'translateX(0)';
+                bg.style.backgroundColor = '#FF6900';
+                bg.style.boxShadow = '0 0 15px rgba(255, 105, 0, 0.4)';
+                
+                // Toggle active text colors
+                btnDodo.classList.remove('text-gray-400', 'hover:text-white');
+                btnDodo.classList.add('text-black');
+                
+                btnDrinkit.classList.remove('text-black');
+                btnDrinkit.classList.add('text-gray-400', 'hover:text-white');
+
+                // Toggle Content with transition
+                drinkitContent.classList.add('opacity-0');
+                setTimeout(() => {
+                    drinkitContent.classList.add('hidden');
+                    dodoContent.classList.remove('hidden');
+                    // slight delay to allow display:block to apply before opacity
+                    setTimeout(() => dodoContent.classList.remove('opacity-0'), 20);
+                }, 300);
+
+            } else {
+                // Animate BG & Change Color to Drinkit Blue
+                bg.style.transform = 'translateX(100%)';
+                bg.style.backgroundColor = '#0055FF'; // Changed from cyan
+                bg.style.boxShadow = '0 0 15px rgba(0, 85, 255, 0.4)';
+                
+                // Toggle active text colors
+                btnDrinkit.classList.remove('text-gray-400', 'hover:text-white');
+                btnDrinkit.classList.add('text-black');
+                
+                btnDodo.classList.remove('text-black');
+                btnDodo.classList.add('text-gray-400', 'hover:text-white');
+
+                // Toggle Content
+                dodoContent.classList.add('opacity-0');
+                setTimeout(() => {
+                    dodoContent.classList.add('hidden');
+                    drinkitContent.classList.remove('hidden');
+                    setTimeout(() => drinkitContent.classList.remove('opacity-0'), 20);
+                }, 300);
             }
         }
     </script>
