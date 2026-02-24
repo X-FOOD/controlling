@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-FOOD Controlling | Независимый контроль</title>
+    <title>XFOOD Controlling | Независимый контроль</title>
     <meta name="description" content="Выявляем нарушения стандартов раньше, чем их заметит УК.">
     
     <!-- Fonts: Inter -->
@@ -188,7 +188,7 @@
         <div class="container mx-auto px-4 relative z-10 text-center">
             
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight mb-4 max-w-4xl mx-auto drop-shadow-lg">
-                X-FOOD Controlling — выявляем нарушения раньше, <br class="hidden md:block">
+                XFOOD Controlling — выявляем нарушения раньше, <br class="hidden md:block">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-600">чем их заметит УК.</span>
             </h1>
             
@@ -218,15 +218,18 @@
 
             <!-- BRAND TOGGLE SWITCH -->
             <div class="flex justify-center mb-10">
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-full flex relative shadow-lg scale-90 sm:scale-100 origin-center">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-full relative shadow-lg scale-90 sm:scale-100 origin-center inline-flex w-[320px] sm:w-[450px]">
                     <!-- Sliding Background: Initially Orange for Dodo -->
-                    <div id="brand-switch-bg" class="absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)] bg-[#FF6900] rounded-full shadow-[0_0_15px_rgba(255,105,0,0.4)] transition-all duration-300 z-0"></div>
+                    <div id="brand-switch-bg" class="absolute top-1 left-1 w-[calc(33.333%-2.66px)] h-[calc(100%-8px)] bg-[#FF6900] rounded-full shadow-[0_0_15px_rgba(255,105,0,0.4)] transition-all duration-300 z-0"></div>
                     
-                    <button onclick="switchBrand('dodo')" class="relative z-10 px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-colors duration-300 w-32 sm:w-40 text-black" id="btn-dodo">
+                    <button onclick="switchBrand('dodo')" class="relative z-10 py-2 rounded-full text-xs sm:text-sm font-bold transition-colors duration-300 flex-1 text-black" id="btn-dodo">
                         Додо Пицца
                     </button>
-                    <button onclick="switchBrand('drinkit')" class="relative z-10 px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-colors duration-300 w-32 sm:w-40 text-gray-400 hover:text-white" id="btn-drinkit">
+                    <button onclick="switchBrand('drinkit')" class="relative z-10 py-2 rounded-full text-xs sm:text-sm font-bold transition-colors duration-300 flex-1 text-gray-400 hover:text-white" id="btn-drinkit">
                         Дринкит
+                    </button>
+                    <button onclick="switchBrand('anybiz')" class="relative z-10 py-2 rounded-full text-xs sm:text-sm font-bold transition-colors duration-300 flex-1 text-gray-400 hover:text-white" id="btn-anybiz">
+                        Любой бизнес
                     </button>
                 </div>
             </div>
@@ -400,6 +403,79 @@
                 </div>
             </div>
 
+            <!-- ANYBIZ CONTENT (HIDDEN INITIALLY) -->
+            <div id="anybiz-content" class="hidden opacity-0 transition-opacity duration-300">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
+                    
+                    <!-- 1. ВЕСЬ СЕРВИС -->
+                    <div class="glass-panel rounded-3xl p-6 flex flex-col transition-all duration-300 relative h-full group">
+                        <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Весь сервис»</h3>
+                        <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Комплексный контроль по любым камерам.</p>
+                        
+                        <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Барбершоп / салон красоты / парикмахерская - любой формат.</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Работаем с любым приложением: от DMSS до RedLine</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Личный кабинет в CRM с онлайн-статистикой</span></li>
+                        </ul>
+                        
+                        <div class="mt-auto">
+                            <div class="flex justify-center mb-4 h-[32px]">
+                                <div class="bg-white/10 rounded-xl w-full h-full flex items-center justify-center border border-white/5 shadow-inner">
+                                    <span class="text-xs font-bold text-white tracking-wide">12 проверок</span>
+                                </div>
+                            </div>
+                            <div class="text-2xl font-bold text-white mb-4 transition-all">8 499 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></div>
+                            <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20обсудить%20проверку%20для%20моего%20бизнеса" class="block w-full py-3 px-4 border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-center rounded-xl transition-all text-xs font-bold uppercase text-white">Попробовать за 1 ₽</a>
+                        </div>
+                    </div>
+
+                    <!-- 2. ВЕСЬ РЕСТОРАН -->
+                    <div class="glass-panel-accent rounded-3xl p-6 flex flex-col relative h-full">
+                        <div class="absolute -inset-1 bg-brand-yellow/20 rounded-3xl blur-xl -z-10 opacity-30"></div>
+
+                        <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Весь ресторан»</h3>
+                        <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Комплексный контроль по любым камерам.</p>
+                        
+                        <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Кафе / ресторан / кофейня - любой формат.</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Работаем с любым приложением: от DMSS до RedLine</span></li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> <span class="text-white font-bold">Личный кабинет в CRM с онлайн-статистикой</span></li>
+                        </ul>
+                        
+                        <div class="mt-auto">
+                            <!-- Бэдж "12 проверок" стилизован под размеры переключателя других карточек -->
+                            <div class="flex justify-center mb-4 h-[32px]">
+                                <div class="bg-white/10 rounded-xl w-full h-full flex items-center justify-center border border-white/5 shadow-inner">
+                                    <span class="text-xs font-bold text-white tracking-wide">12 проверок</span>
+                                </div>
+                            </div>
+                            <div class="text-2xl font-bold text-white mb-4 transition-all">9 999 ₽ <span class="text-xs text-gray-400 font-normal">/ мес</span></div>
+                            <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20обсудить%20проверку%20для%20моего%20бизнеса" class="block w-full py-3 px-4 btn-liquid-gold text-black text-center rounded-xl transition-all text-xs font-bold uppercase">Попробовать за 1 ₽</a>
+                        </div>
+                    </div>
+
+                    <!-- 3. ЭКСКЛЮЗИВ -->
+                    <div class="glass-panel rounded-3xl p-6 flex flex-col transition-all duration-300 h-full">
+                        <h3 class="text-lg font-bold text-white mb-2 h-[28px] flex items-center">«Эксклюзив»</h3>
+                        <p class="text-gray-400 text-xs mb-6 min-h-[32px]">Индивидуальные условия под ваши задачи.</p>
+                        
+                        <ul class="space-y-3 mb-8 flex-1 text-xs text-gray-300">
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Любое количество камер</li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> От 8 проверок в месяц</li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Индивидуальный чек-лист</li>
+                            <li class="flex items-start"><span class="text-brand-yellow mr-2 drop-shadow-[0_0_5px_rgba(255,215,0,0.8)]">●</span> Персональный менеджер</li>
+                        </ul>
+                        
+                        <div class="mt-auto">
+                            <div class="h-[32px] mb-4 w-full"></div>
+                            <div class="text-2xl font-bold text-white mb-4">от 1 200 ₽ <span class="text-xs text-gray-400 font-normal">/ проверка</span></div>
+                            <a href="https://t.me/dodo_ul?text=Здравствуйте!%20Хочу%20обсудить%20Эксклюзивный%20тариф%20для%20своего%20бизнеса" class="block w-full py-3 px-4 border border-white/20 hover:border-white/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm text-center rounded-xl transition-all text-xs font-bold uppercase text-white">Обсудить</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
         
         <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-700 to-transparent opacity-50"></div>
@@ -479,7 +555,7 @@
                 </div>
             </div>
 
-            <p class="text-center text-xs text-gray-500 mt-8 uppercase tracking-widest font-medium">Средние показатели по сети X-FOOD (Июль - Декабрь 2025)</p>
+            <p class="text-center text-xs text-gray-500 mt-8 uppercase tracking-widest font-medium">Средние показатели по сети XFOOD (Июль - Декабрь 2025)</p>
         </div>
     </section>
 
@@ -515,7 +591,7 @@
                         <p class="text-brand-yellow text-sm font-bold uppercase tracking-wider drop-shadow-[0_0_5px_rgba(255,215,0,0.5)]">Бизнес-девелопер</p>
                     </div>
                     <div class="flex items-start justify-center w-full">
-                        <p class="text-gray-400 text-sm max-w-[250px] leading-snug">8 лет с Додо, лидер ВД X-FOOD</p>
+                        <p class="text-gray-400 text-sm max-w-[250px] leading-snug">8 лет с Додо, лидер ВД XFOOD</p>
                     </div>
                 </div>
 
@@ -536,7 +612,7 @@
             </div>
             
             <p class="text-center mt-8 text-brand-yellow font-bold uppercase tracking-wider text-base drop-shadow-[0_0_10px_rgba(255,215,0,0.3)]">
-                10+ экспертов по всей России от Калининграда до Хабаровска
+                10+ экспертов по всей России от Калининграда до Томска
             </p>
         </div>
     </section>
@@ -559,13 +635,21 @@
     <!-- FOOTER -->
     <footer class="py-8 border-t border-white/10 bg-black/80 backdrop-blur-xl relative z-20">
         <div class="container mx-auto px-4 flex justify-between items-center text-sm text-gray-500">
-            <div class="font-bold text-white text-lg">X-FOOD</div>
+            <div class="font-bold text-white text-lg">XFOOD</div>
             <div>Не является публичной офертой © 2023-2026</div>
         </div>
     </footer>
 
     <!-- SCRIPT FOR SWITCHING AND TARIFFS -->
     <script>
+        let currentActiveBrand = 'dodo';
+
+        const brandConfigs = {
+            'dodo': { bgCol: '#FF6900', shadow: '0 0 15px rgba(255,105,0,0.4)', trans: '0%' },
+            'drinkit': { bgCol: '#0055FF', shadow: '0 0 15px rgba(0,85,255,0.4)', trans: '100%' },
+            'anybiz': { bgCol: '#8B5CF6', shadow: '0 0 15px rgba(139,92,246,0.4)', trans: '200%' }
+        };
+
         function toggleTariff(type, is16, brand = 'dodo') {
             // Determine suffix based on brand
             const suffix = brand === 'dodo' ? '-dodo' : '-drinkit';
@@ -608,55 +692,39 @@
         }
 
         function switchBrand(brand) {
-            const dodoContent = document.getElementById('dodo-content');
-            const drinkitContent = document.getElementById('drinkit-content');
+            if (brand === currentActiveBrand) return;
+
+            // Animate BG & Change Color
             const bg = document.getElementById('brand-switch-bg');
-            const btnDodo = document.getElementById('btn-dodo');
-            const btnDrinkit = document.getElementById('btn-drinkit');
+            bg.style.transform = `translateX(${brandConfigs[brand].trans})`;
+            bg.style.backgroundColor = brandConfigs[brand].bgCol;
+            bg.style.boxShadow = brandConfigs[brand].shadow;
+            
+            // Toggle active text colors for all buttons
+            ['dodo', 'drinkit', 'anybiz'].forEach(b => {
+                const btn = document.getElementById(`btn-${b}`);
+                if (b === brand) {
+                    btn.classList.remove('text-gray-400', 'hover:text-white');
+                    btn.classList.add('text-black');
+                } else {
+                    btn.classList.remove('text-black');
+                    btn.classList.add('text-gray-400', 'hover:text-white');
+                }
+            });
 
-            if (brand === 'dodo') {
-                // Animate BG & Change Color to Dodo Orange
-                bg.style.transform = 'translateX(0)';
-                bg.style.backgroundColor = '#FF6900';
-                bg.style.boxShadow = '0 0 15px rgba(255, 105, 0, 0.4)';
-                
-                // Toggle active text colors
-                btnDodo.classList.remove('text-gray-400', 'hover:text-white');
-                btnDodo.classList.add('text-black');
-                
-                btnDrinkit.classList.remove('text-black');
-                btnDrinkit.classList.add('text-gray-400', 'hover:text-white');
+            // Toggle Content
+            const oldContent = document.getElementById(`${currentActiveBrand}-content`);
+            const newContent = document.getElementById(`${brand}-content`);
+            
+            oldContent.classList.add('opacity-0');
+            setTimeout(() => {
+                oldContent.classList.add('hidden');
+                newContent.classList.remove('hidden');
+                // Небольшая задержка, чтобы display:block успел сработать до изменения opacity
+                setTimeout(() => newContent.classList.remove('opacity-0'), 20);
+            }, 300);
 
-                // Toggle Content with transition
-                drinkitContent.classList.add('opacity-0');
-                setTimeout(() => {
-                    drinkitContent.classList.add('hidden');
-                    dodoContent.classList.remove('hidden');
-                    // slight delay to allow display:block to apply before opacity
-                    setTimeout(() => dodoContent.classList.remove('opacity-0'), 20);
-                }, 300);
-
-            } else {
-                // Animate BG & Change Color to Drinkit Blue
-                bg.style.transform = 'translateX(100%)';
-                bg.style.backgroundColor = '#0055FF'; // Changed from cyan
-                bg.style.boxShadow = '0 0 15px rgba(0, 85, 255, 0.4)';
-                
-                // Toggle active text colors
-                btnDrinkit.classList.remove('text-gray-400', 'hover:text-white');
-                btnDrinkit.classList.add('text-black');
-                
-                btnDodo.classList.remove('text-black');
-                btnDodo.classList.add('text-gray-400', 'hover:text-white');
-
-                // Toggle Content
-                dodoContent.classList.add('opacity-0');
-                setTimeout(() => {
-                    dodoContent.classList.add('hidden');
-                    drinkitContent.classList.remove('hidden');
-                    setTimeout(() => drinkitContent.classList.remove('opacity-0'), 20);
-                }, 300);
-            }
+            currentActiveBrand = brand;
         }
     </script>
 
